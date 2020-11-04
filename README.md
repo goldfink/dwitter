@@ -1,34 +1,47 @@
-# Follow
+# Dwitter 
 
-decentralized, censorship resistant publication and subscription (social media) on IPFS
+* **Project:** Dwitter Censorship-Resistant Web3 Microblogging and Social Networking service
 
-## Status
+## Project Overview 
+The projects serves a Web3 replacement of Twitter, which has become the Internet standard for 330 million active users engaging in the creation of content as well as social interaction, political and journalistic review, news coverage and diplomatic representation of nation states.
 
-Alpha
+The platform has made it easy to pursue these means of communication using centralized instrastructure and services owned and operated by Twitter Inc. -- Parity's mission of launching the web3 in a decentralized manner aligns with the goal of including a version of the platform that relies on technology such as Polkadot Blockchain providing Human readable names and IPFS/Filecoin for self-hosted user content, providing uncensorable social content entirely in the users control.
 
-## Warnings
+The Tor project, specifically integration of establishing a circuit with the Tor network with ease such as the Tor Browser project  does (https://github.com/TheTorProject/gettorbrowser) shall render the anonymity infrastructure of the project. Ease of use for the public and a gateway for internal name resolution from default desktop and mobile browsers is a goal of the project.  
 
-This app will override anything you've previously published to your IPFS id (via IPNS)
-merging planned for future...
+### Overview
 
-Also, this app will probably break frequently for the foreseeable future so don't get attached to your posts just yet ;)
+  * *Substrate / Polkadot / Kusama Integration* Dwitter provides a Polkadot Parachain for human readable names in a decentralized platform, as well as social currency exchange between users.
+  * *Team* The team is experienced in cryptographic technology, distributed systems and shares the security community's and Parity's mission on decentralization.
+    It serves experience in international entrepreneurship and is engaged in the security community. Open source value for a web3 and a more open and decentralized     Internet has been and is being created.
 
-If a breaking change occurs, try manually editing your identity object, stored in electrons "user data" directory
+### Project Details 
+The final state of the project renders a Website on Public DNS or browser supported crypto domains, as well as multiple clients for mobile and desktop usage. The user interfaces serves an intuitive frontend proxying social media funcitonality through censorship resistant and purposefully web3 proven Tor hidden services, IPFS/IPNS for user-controlled content delivery and a Polkadot parachain, rendering currency and human readable names.
 
-## Architecture
+Previous social networking solutions like Diaspora or Mostadon have either failed to reach social outreach, or have failed in their purpose of censorship resistance for an open and inclusive web3. Current political censorship and changes to the Twitter UI render important issues. The company is subpoenad to testify on post censorship and is highly government survailled. Dwitter is aiming to use proven cryrptographic, distributed precedence in addition to a solid codebase and Substrate integration to fill in the gap. Social payments and incentivation of stars to use the platform is planned. 
 
-The core of follow is it's concept of an identity.
+#### Architecture Mockup
+![alt text](https://github.com/goldfink/General-Grants-Program/blob/Web3Foundation-patch-1/grants/Architecture_Mockup.png?raw=true)
 
-The identity object is where the data about the users posts, the people they "follow", and whatever else they might want to include is stored.
+#### UI Prototype samples
+![alt text](https://github.com/goldfink/General-Grants-Program/blob/Web3Foundation-patch-1/grants/dwitter_electron.png?raw=true)
+![alt text](https://github.com/goldfink/General-Grants-Program/blob/Web3Foundation-patch-1/grants/dwitter_timeline.png?raw=true)
+![alt text](https://github.com/goldfink/General-Grants-Program/blob/Web3Foundation-patch-1/grants/dwitter_profile.png?raw=true)
 
-An identity object is the fundamental unit that we'll use to create a distributed social graph.
+The UI mimics the Twitter.com user experience with additional features. 
 
-First, we connect to IPFS and retrieve our ID.
+#### Similiar Projects
+* https://app.subsocial.network/ - Polkadot social network, discourages social use currently, mimics Diaspora
+* https://www.ethtweet.me/ - Requires geth client for use, not useable on Mobile
 
-On first boot, we instantiate a new "Identity" object, which is ultimately saved to disk as a json file.
+#### Preliminary Architecture and API Outline
+
+The concept of follow, the code base at the start of the implementation holds at its core the concept of an identity. The identity object is where the data about the users posts, the people they "follow", and whatever else they might want to include is stored. An identity object is the fundamental unit that we'll use to create a distributed social graph.
+
+First, we connect to IPFS and retrieve our ID. On first boot, we instantiate a new "Identity" object, which is ultimately saved to disk as a json file.
 
 Most of the identity logic is contained in the Identity class:
-`src/modules/identity.js`
+`follow/modules/identity.js`
 
 Identity object structure:
 
@@ -69,14 +82,6 @@ post object:
 }
 ```
 
-meta object:
-
-```
-{
-    "TODO": "" //
-}
-```
-
 We cache every post (user and following) object and "post body"(text) to disk for faster load times, and we automatically pin post CIDs to strengthen the network. ID caches follow a strict directory structure.
 
 Once an identity object has been generated and saved to disk, it is "uploaded" and "pinned" via IPFS.
@@ -90,65 +95,96 @@ Once a user "follows" another user, the process of fetching their posts is done 
 
 Identity objects _will_ be automatically re-fetched periodically, followed by their new posts.
 
-## How to run
+#### Technology Stack
+The used open source technologies for censorship resistance, decentralization and tokenization, human readable domain names, render as [Tor](https://github.com/TheTorProject), [IPFS](https://github.com/ipfs/ipfs), [IPNS](https://docs.ipfs.io/concepts/ipns/), and [OpenBazzar tor onion ipfs transport](https://github.com/OpenBazaar/go-onion-transport). 
 
-```
-git clone git@github.com:iohzrd/follow.git
-cd follow
-npm install
-npm start
-```
+#### Proof of Concept
+* https://github.com/iohzrd/follow
 
-## TODO
+### Ecosystem Fit 
+The Ecosystem fit is proven by purpose, integration of the Polkadot Stack and architectural censorship resistant design of the project. The AutoDapp project seems to align https://raymondcheng.net/projects/decentralization/autodapp-proposal.html with the web3 mission as well.
 
-- [x] prototype logic
-- [x] periodically re-publish self identity
-- [x] periodically update identities you follow...
-- [x] cache posts
-- [x] enable file in posts
-- [x] bundle IPFS binaries and manage execution
-- [x] "re-post" / mirror a post
-- [x] per post comments via pubsub
-- [x] post view
-- [x] include index.html with posts to allow styling for browser consumption...
-- [x] implement tray.
-- [x] Migrate core logic to use IPC...
-- [x] progress events for spinners and such
-- [ ] Distribute binaries / Auto-update
-- [ ] meta view ("playlists" / arbitrary user defined categorization)
-- [ ] meta comment system (topic based bulletin board)
-- [ ] settings view
-- [ ] add banners to following view (amount of new posts etc...)
-- [ ] "remix"(clone and modify) other users "playlists"...
-- [ ] seed posts as web torrents (for redundancy)
-- [ ] sign posts (probably the list of CIDs or maybe body)
-- [ ] use IPLD
-- [ ] TOR integration
+## Team
 
-## Follow me
+### Team members
+* goldfink
+* iohzrd
+* weev	
 
-```
-Qmb4zrL17TtLGnaLFuUQC4TmaVbizEfVbDnnSzNLxkZ3Zp
-```
+### Team Website	
+* https://github.com/goldfink/dtwitter
 
-and
+### Legal Structure 
+The company is registered in London, named Wyvern Intrinsics Ltd. as is owned by Dan Marsollek Zulla <goldfink@wyvern.ch>
 
-```
-12D3KooWPPAV9MsQokpWnT3ufMoc8KDJrnEysBnwYW6pkbGEmzwa
-```
+### Team's experience
+The team is experienced in decentralized technology and security community involvement, contributions to major open source projects and security responsible disclosure is documented. 
 
-## Shilling...
+### Team References
+* https://github.com/iohzrd
+* https://github.com/iohzrd/follow
+* https://bugzilla.mozilla.org/attachment.cgi?id=8623817&action=diff
+* https://www.nbcnews.com/id/wbna52112017
+* https://github.com/dan_cipher
+* https://www.youtube.com/watch?v=7cgWrnPeIKs
+* https://www.businessinsider.com/peter-thiel-fellows-2013-2013-5?r=DE&IR=T
+* https://www.eff.org/press/releases/eff-joins-andrew-auernheimer-case-appeal
 
-btc
+### Team Social Profiles
+* https://www.linkedin.com/in/goldfink/
 
-```
-bc1q8ggm58rue6ssw26cxpmlez55scdvawh9kas2m7
-```
+## Development Roadmap :nut_and_bolt: 
 
-or
+Below we provide the roadmap of the Dwitter project. The milestones will be executed in parallel and due to research in performance and scalability, censorship resistance and potential improvements and feature merge requests to multiple open source projects involved, as well deciding upon further production features such as prominency social reward, incentivizing the use of the platform.
 
-https://www.patreon.com/iohzrd
+### Overview
+* **Total Estimated Duration:** 1 year, 6 months 30k PoC, with additional 200k in requested funding for facing the public Internet and creating a startup company
+* **Full-time equivalent (FTE):**  Full time work on the project will be pursued.
+* **Total Costs:** The request of this proposal for the creation of a Proof-Of-Concept is BTC 2.4 (Unix timestamp 30k CHF to BTC exchange rate 1604426503.916094)
 
-## License
+### Milestone 1 — Implement a Dapp with IPFS/IPNS Pinning, and Tor hidden service content delivery in a UI client & Implement Substrate Modules, Launch a Polkadot parachain for human readable names, social currency and Direct messages
 
-[MIT](LICENSE)
+* **Estimated Duration:** 6 months * 2 (or 1)
+* **FTE:**  1.0
+* **Costs:** 2.4 BTC (Unix timestamp 30k CHF to BTC exchange rate 1604426503.916094)
+
+
+| Number | Deliverable | Specification |
+| ------------- | ------------- | ------------- |
+| 0a. | License | Apache License 2.0 |
+| 0b. | Documentation | We will provide both inline documentation of the code and Markdown documentation of it extending and forking the initial follow codebase |
+| 0c. | Blockchain | We will launch a Polkadot Parachain for Social Payments and Naming |
+| 1. | Substrate module: 1 | We will create a Substrate module that will incorporate human readable domain names for the current pinning model) |  
+| 2. | Substrate module: 2 | We will create a Substrate module that will render social payments with its own coin and other cryptocurrencies |  
+| 3. | Substrate module: 3 | We will create a Substrate module that will allow for private message hashsum verification with the network |  
+| 4. | Substrate chain | Modules Naming with substrate-names, Payment & Direct Messages of our custom chain will interact on top of the Dwitter client providing additional features as opposed to storing social content directly on the blockchain |  
+| 5. | Tor hidden services | Tor circuits will provide censorship resistant anonymous routing between the IPFS nodes, and the clients |
+| 6. | Unit Tests for the entire platform including benchmarks (of IPFS, for example) |
+| 7. | Docker | We will provide a dockerfile to demonstrate the full functionality of our chain |
+| 8. | Blockchain DNS | Review of several decentralized DNS implementations and Namecoins |
+| 9. | Ethereum 2.0 | Review of MetaMask integration and browser support for .eth domains with upcoming eth0 mobile-friendly | 
+
+
+### Bitcoin address for funding
+
+* 36HqxNVR7yaW49pCQws1DXKSCg2oVZZAw3
+
+### Community engagement
+
+A thourough [Medium](https://medium.com/)) article will be written and published upon completion of the grant.
+
+### Repositories under consideration
+* https://github.com/NodeFactoryIo/metamask-snap-polkadot
+* https://github.com/paritytech/frontier
+* https://github.com/filecoin-project For potential replacement or integration with IPFS
+
+### Further grants under consideration
+*  https://github.com/filecoin-project/devgrants
+
+## Future Plans
+The long-term goal of the project is to fullfill the goal of Bluesky to provide a web3 version of Twitter with a focus on performance and censorship resistance, in the format of a publicly used Internet service instead of a Blockchain and Security Community exclusive project.
+
+## Additional Information :heavy_plus_sign: 
+* Work done so far: Architectural setup, Follow code and UI for social media messaging and IPFS pinning
+* No further grant applications have been made, and no further financial involvement has been present
+

@@ -167,6 +167,11 @@ Below we provide the roadmap of the Dwitter project. The milestones will be exec
 
 A thourough [Medium](https://medium.com/)) article will be written and published upon completion of the grant.
 
+### Content policy under consideration
+* https://github.com/filecoin-project/devgrants/blob/master/rfps/wave-4-rfps.md#shared-blocklists-of-content-cids
+* For W3C-friendly DIDs chain-agnostic and web3-auth agnostic https://github.com/ceramicnetwork/ceramic/blob/master/OVERVIEW.md#ceramic-overview
+* Textiles ThreadDB https://docsend.com/view/gu3ywqi
+
 ### Repositories under consideration
 * https://github.com/NodeFactoryIo/metamask-snap-polkadot
 * https://github.com/paritytech/frontier

@@ -2,6 +2,8 @@
 
 * **Project:** Dwitter Censorship-Resistant Web3 Microblogging and Social Networking service
 
+![Web3](./web3.svg)
+
 ## Project Overview 
 The projects serves a Web3 replacement of Twitter, which has become the Internet standard for 330 million active users engaging in the creation of content as well as social interaction, political and journalistic review, news coverage and diplomatic representation of nation states.
 
